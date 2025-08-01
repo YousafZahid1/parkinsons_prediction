@@ -90,8 +90,6 @@ print("Cross Validation Score for SVM: ", s/5)
 
 
 
-
-
 # sns.pairplot(df,hue='status',palette='coolwarm')
 
 sns.heatmap(df.corr(),annot=True,fmt='.2f',cmap='coolwarm')
