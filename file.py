@@ -30,7 +30,7 @@ Use open UCI datasets with sklearn models to detect Parkinson’s using voice si
 
 Add ROC curves, model comparisons, and explainability.
 
-👉 Stack: scikit-learn, seaborn, UCI Parkinson dataset, numpy, pandas
+ Stack: scikit-learn, seaborn, UCI Parkinson dataset, numpy, pandas
 '''
 
 
