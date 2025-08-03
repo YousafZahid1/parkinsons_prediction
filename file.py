@@ -5,15 +5,25 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC,LinearSVC
-#import StandardScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 import seaborn as sns
 import matplotlib.pyplot as plt
-#Decision Tree, Random Forst,Gradient Boosting LEARN
+from sklearn.metrics import roc_curve,auc
+#Decision Tree, Random Forst,Gradient Boosting LEARN!
 
 
 '''
+#Include RandomForestClassifer  AND
+# Add ROC curves,
+
+REinforcement Learning, and explainability.'''
+
+
+'''
+
+
+
 Project: "Predict Parkinson’s Disease from Voice Features"
 
 Use open UCI datasets with sklearn models to detect Parkinson’s using voice signal features.
@@ -92,5 +102,35 @@ print("Cross Validation Score for SVM: ", s/5)
 
 # sns.pairplot(df,hue='status',palette='coolwarm')
 
-sns.heatmap(df.corr(),annot=True,fmt='.2f',cmap='coolwarm')
+#Roc for all the models
+
+
+
+#1) 
+y_test_prob = model.predict_proba(x_test)[:,1]
+
+
+fpr,tpr,threshold = roc_curve(y_test,y_test_prob)
+
+
+
+
+knn_y_test_prob = knn.predict_proba(x_test)[:,1]
+knn_fpr,knn_tpr,knn_threshold = roc_curve(y_test,knn_y_test_prob)
+plt.plot(knn_fpr,knn_tpr,label='KNN',color="red")
+#2)
+svm_y_test_prob = svm.decision_function(x_test)
+svm_fpr,svm_tpr,svm_threshold = roc_curve(y_test,svm_y_test_prob)
+plt.plot(svm_fpr,svm_tpr,label='SVM',color="green")
+
+
+plt.plot(fpr,tpr,label='Logistic Regression')
+plt.plot([0,1],[0,1],'--',color="gray")
+
+
+plt.legend(loc='upper right')
+plt.title('Different Models ROC Curve')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+# sns.heatmap(df.corr(),annot=True,fmt='.2f',cmap='coolwarm')
 plt.show()
